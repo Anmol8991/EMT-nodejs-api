@@ -9,7 +9,6 @@ class UserServices {
    * @param {userId, roleId} req
    * @param {*} res
    * @returns {data: {clockStatus}}
-   * TODO: location is hard coded...retrieve it from req ip address
    */
   async getClockStatus(req, res) {
     const userId = req.userId;
