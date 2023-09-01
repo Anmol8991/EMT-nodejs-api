@@ -1,5 +1,5 @@
 const { sendResponse, createError } = require("./baseController.js");
-const UserServices = require("../services/UserServices.js");
+const UserServices = require("../services/userServices.js");
 
 /**
   * @param {userId, role} req
