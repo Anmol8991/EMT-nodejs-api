@@ -2,6 +2,7 @@ const mysql = require("mysql2");
 // Setting up the Db connection
 const pool = mysql.createPool({
     host:  process.env.DB_HOST,
+    port: process.env.DB_PORT,
     user:  process.env.DB_USER,
     password: process.env.DB_PSWD,
     database: process.env.DB,
@@ -12,9 +13,9 @@ const pool = mysql.createPool({
 
 pool.getConnection((err, conn) => {
   if(err) {
-    console.log(err)
+    console.log("Error connecting Db: ",err)
   }else{
-    console.log(" Database Connected successfully!")
+    console.log(" Database Connected successfully!: ", conn.config)
   }
 })
 // now get a Promise wrapped instance of that pool
