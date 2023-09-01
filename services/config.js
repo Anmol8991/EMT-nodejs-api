@@ -18,6 +18,8 @@ pool.getConnection((err, conn) => {
     console.log("Error connecting Db: ",err)
   }else{
     console.log(" Database Connected successfully!", conn.config)
+    // Release the connection when done with it.
+    conn.release();
   }
 })
 // now get a Promise wrapped instance of that pool
