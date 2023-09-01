@@ -11,8 +11,11 @@ const pool = mysql.createPool({
   });
 
 pool.getConnection((err, conn) => {
-  if(err) console.log(err)
-  console.log(" Database Connected successfully!")
+  if(err) {
+    console.log(err)
+  }else{
+    console.log(" Database Connected successfully!")
+  }
 })
 // now get a Promise wrapped instance of that pool
 module.exports = pool.promise();
