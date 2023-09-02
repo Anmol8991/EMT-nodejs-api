@@ -24,7 +24,8 @@ const app = express();
 // CORS - Cross Origin Resource Sharing, our Frontend will be runing on different port (3000) and our Backend will run of 5000, it so how can frontend access backend, so we need to connect it, thats the reason we are using CORS.
 const allowedOrigins = [
   'https://darling-raindrop-2ce390.netlify.app',
-  'https://emt-react.onrender.com'
+  'https://emt-react.onrender.com',
+  'http://localhost:5173'
 ]
 const corsOptions = {
   origin: (origin, callback) => {
