@@ -22,7 +22,21 @@ const app = express();
 // headers such as Access-Control-Allow-Origin to specify which
 // origins are allowed to access the server's resources.
 // CORS - Cross Origin Resource Sharing, our Frontend will be runing on different port (3000) and our Backend will run of 5000, it so how can frontend access backend, so we need to connect it, thats the reason we are using CORS.
-app.use(cors());
+const allowedOrigins = [
+  'https://darling-raindrop-2ce390.netlify.app/'
+]
+const corsOptions = {
+  origin: (origin, callback) => {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+          callback(null, true)
+      } else {
+          callback(new Error('Not allowed by CORS'))
+      }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 // This middleware is responsible for parsing incoming request
 // bodies with JSON payloads. When a client sends a request
 // with a JSON payload, such as in the case of an API call,
