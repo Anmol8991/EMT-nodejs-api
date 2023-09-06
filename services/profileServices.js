@@ -79,7 +79,7 @@ class ProfileServices {
           const [results3] = await promisePool.query(query3, [name, userId]);
         }else{
           // email changed and hence delete the record from the table
-          const query4 = `DELETE federated_credentials WHERE user_id = ?;`;
+          const query4 = `DELETE FROM federated_credentials WHERE user_id = ?;`;
           const [results4] = await promisePool.query(query4, [userId]);
         }
       }
