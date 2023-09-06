@@ -65,9 +65,12 @@ class ProfileServices {
     const { name, email } = req.body;
 
     if (roleId === 1 || roleId === 2) {
+      // update in users table
       const query = `UPDATE users SET name = ?, email = ? WHERE id = ?;`;
       const [results] = await promisePool.query(query, [name, email, userId]);
-
+      // update in federated_credentials table
+      const query2 = `UPDATE federated_credentials SET name = ?, email = ? WHERE user_id = ?;`;
+      const [results2] = await promisePool.query(query2, [name, email, userId]);
       return {
         data: {},
       };
