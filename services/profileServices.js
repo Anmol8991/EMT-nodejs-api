@@ -75,7 +75,7 @@ class ProfileServices {
         console.log("social login of this employee NOT available!")
       }else{
         if(results2[0]?.email === email){
-          const query3 = `UPDATE federated_credentials SET name = ?, WHERE user_id = ?;`;
+          const query3 = `UPDATE federated_credentials SET name = ? WHERE user_id = ?;`;
           const [results3] = await promisePool.query(query3, [name, userId]);
         }else{
           // email changed and hence delete the record from the table
