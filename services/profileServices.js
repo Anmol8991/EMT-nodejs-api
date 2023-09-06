@@ -69,11 +69,24 @@ class ProfileServices {
       const query = `UPDATE users SET name = ?, email = ? WHERE id = ?;`;
       const [results] = await promisePool.query(query, [name, email, userId]);
       // update in federated_credentials table
-      const query2 = `UPDATE federated_credentials SET name = ?, email = ? WHERE user_id = ?;`;
-      const [results2] = await promisePool.query(query2, [name, email, userId]);
+      const query2 = `SELECT email FROM federated_credentials WHERE user_id=?`;
+      const [results2] = await promisePool.query(query2, [userId]);
+      if(results2.length === 0){
+        console.log("social login of this employee NOT available!")
+      }else{
+        if(results2[0]?.email === email){
+          const query3 = `UPDATE federated_credentials SET name = ?, WHERE user_id = ?;`;
+          const [results3] = await promisePool.query(query3, [name, userId]);
+        }else{
+          // email changed and hence delete the record from the table
+          const query4 = `DELETE federated_credentials WHERE user_id = ?;`;
+          const [results4] = await promisePool.query(query4, [userId]);
+        }
+      }
       return {
         data: {},
       };
+     
     } else {
       return {
         data: null,
