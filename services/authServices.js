@@ -15,8 +15,8 @@ class AuthServices {
    */
   async login(req, res) {
     const { email, password } = req.body;
-    // console.log("Email received from user: ", email);
-    // console.log("Password received from user: ", password);
+    console.log("Email received from user: ", email);
+    console.log("Password received from user: ", password);
     const userExistsQuery = "SELECT * FROM users WHERE email = ?";
     const [results] = await promisePool.query(userExistsQuery, [email]);
     const user = results[0];
