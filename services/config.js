@@ -14,7 +14,7 @@ const pool = mysql.createPool({
 pool.getConnection((err, conn) => {
   if(err) {
     console.log("Error connecting Db: ",err)
-    console.log(`${{
+    console.log(`${JSON.stringify({
     host:  process.env.DB_HOST,
     port: process.env.DB_PORT,
     user:  process.env.DB_USER,
@@ -23,7 +23,7 @@ pool.getConnection((err, conn) => {
     waitForConnections: true,
     connectionLimit: 10, // Maximum number of connections in the pool
     queueLimit: 0
-  }}`)
+  })}`)
       
   }else{
     console.log(" Database Connected successfully!", conn.config)
